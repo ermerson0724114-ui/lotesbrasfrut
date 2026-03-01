@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-display: 'Outfit', sans-serif;
+
+    /* Clean, premium aesthetic - light mode */
+    --background: 210 33% 98%; /* Soft off-white */
+    --foreground: 224 71% 4%; /* Near black */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    
+    /* Emerald Green for primary actions */
+    --primary: 142 76% 36%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 142 20% 96%;
+    --secondary-foreground: 142 24% 15%;
+    
+    --muted: 142 20% 96%;
+    --muted-foreground: 142 15% 45%;
+    
+    --accent: 142 76% 36%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 350 89% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 142 13% 91%;
+    --input: 142 13% 91%;
+    --ring: 142 76% 36%;
+
+    --radius: 1rem;
+
+    /* Status Colors */
+    --status-aguardando: 38 92% 50%;
+    --status-liberado: 142 71% 45%;
+    --status-retido: 350 89% 60%;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 210 40% 98%;
+    
+    --card: 224 71% 6%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 224 71% 6%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 142 76% 36%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 142 28% 17%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 142 28% 17%;
+    --muted-foreground: 142 20% 65%;
+    
+    --accent: 142 76% 36%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 350 89% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 142 28% 17%;
+    --input: 142 28% 17%;
+    --ring: 142 76% 36%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    /* Safe area padding for mobile bottom bar */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight font-bold;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-card/80 backdrop-blur-lg border-border/50 shadow-sm;
+  }
+  
+  .glass-nav {
+    @apply bg-card/90 backdrop-blur-xl border-t border-border/50;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Custom Status Badges */
+  .badge-aguardando {
+    @apply bg-[hsl(var(--status-aguardando)/0.15)] text-[hsl(var(--status-aguardando))] border-[hsl(var(--status-aguardando)/0.3)];
+  }
+  .badge-liberado {
+    @apply bg-[hsl(var(--status-liberado)/0.15)] text-[hsl(var(--status-liberado))] border-[hsl(var(--status-liberado)/0.3)];
+  }
+  .badge-retido {
+    @apply bg-[hsl(var(--status-retido)/0.15)] text-[hsl(var(--status-retido))] border-[hsl(var(--status-retido)/0.3)];
+  }
+
+  /* Smooth scrollbar hidden for horizontal lists */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Animations */
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
